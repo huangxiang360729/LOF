@@ -72,7 +72,9 @@ void lof(struct node *node_arr,int node_num,int lof_k){
 	for(int i=0;i<node_num;i++){
 		for(int j=i;j<node_num;j++){
 			double d=sqrt(pow((node_arr[i].x-node_arr[j].x),2)+pow((node_arr[i].y-node_arr[j].y),2));
-			if(d==0 && i!=j){//Handling two nodes with the same (x,y) position
+			//Handling two nodes with the same (x,y) position
+			//In this way, although the error of dividing by 0 will not occur, the lof of some nodes may be very large.
+			if(d==0 && i!=j){
 				//printf("x:%6.4f, y:%6.4f\n",node_arr[i].x,node_arr[i].y);
 				d=1.0e-12;
 			}
